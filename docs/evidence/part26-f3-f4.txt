@@ -1,0 +1,27 @@
+===== F3: Missing dependency (uvicorn removed from requirements.txt)
+> cat requirements.txt
+fastapi==0.115.6
+> docker build -t student-ml-api:missing-dep .
+sha256:ffceadabf5fdfc76474ee15260c34d7772ebe85b8e6ca9c89bc2d30747049c26
+build exit code: 0  (build SUCCEEDS - the problem is invisible at build time)
+> docker run -d --name f3-missing -p 5004:5000 student-ml-api:missing-dep
+aed5ddcdffc082d8622c0a53221e9c7801484441f55e1d426dfe0a131ecca0ba
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "uvicorn": executable file not found in $PATH: unknown
+
+Run 'docker run --help' for more information
+> docker ps -a
+Created
+> docker inspect State
+ExitCode=127 Error=failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "uvicorn": executable file not found in $PATH: unknown
+> docker logs f3-missing
+
+===== F4: Incorrect image tag (git tag name used as image tag)
+> docker pull ghcr.io/abdullah8168/student-ml-api:v1.0.0
+Error response from daemon: manifest unknown
+exit code: 1
+> docker pull ghcr.io/Abdullah8168/student-ml-api:1.0.0   (uppercase owner)
+invalid reference format: repository name (Abdullah8168/student-ml-api) must be lowercase
+exit code: 1
+> docker pull ghcr.io/abdullah8168/student-ml-api:1.0.0   (correct)
+ghcr.io/abdullah8168/student-ml-api:1.0.0
+exit code: 0

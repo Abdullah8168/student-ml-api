@@ -1,0 +1,10 @@
+﻿pwd=/app
+whoami=appuser
+total 20
+drwxr-xr-x 1 root root 4096 Sep 10 07:30 .
+drwxr-xr-x 1 root root 4096 Sep 10 07:30 ..
+-rwxr-xr-x 1 root root    6 Sep 10 07:28 VERSION
+-rwxr-xr-x 1 root root 1317 Sep 10 07:28 app.py
+-rwxr-xr-x 1 root root   33 Sep 10 07:28 requirements.txt
+1.0.0
+/usr/local/bin/python3.12 /usr/local/bin/uvicorn app:app --host 0.0.0.0 --port 5000 

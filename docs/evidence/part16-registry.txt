@@ -1,0 +1,3 @@
+﻿### Part 16 registry contents (GHCR API, anonymous pull token)
+tags: 1.0.0, latest, a7fc195
+all -> sha256:9737f81291ff8ffe11808c811e169540dc460cff7c3e5997eff19a10e068ec10

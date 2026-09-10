@@ -1,0 +1,62 @@
+﻿Unit Tests	Unit tests	﻿2026-09-10T07:38:05.6932160Z ##[group]Run pytest -v
+Unit Tests	Unit tests	2026-09-10T07:38:05.6932466Z ^[[36;1mpytest -v^[[0m
+Unit Tests	Unit tests	2026-09-10T07:38:05.6971127Z shell: /usr/bin/bash -e {0}
+Unit Tests	Unit tests	2026-09-10T07:38:05.6971388Z env:
+Unit Tests	Unit tests	2026-09-10T07:38:05.6971664Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+Unit Tests	Unit tests	2026-09-10T07:38:05.6972115Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+Unit Tests	Unit tests	2026-09-10T07:38:05.6972560Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Unit Tests	Unit tests	2026-09-10T07:38:05.6972971Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Unit Tests	Unit tests	2026-09-10T07:38:05.6973369Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Unit Tests	Unit tests	2026-09-10T07:38:05.6973763Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+Unit Tests	Unit tests	2026-09-10T07:38:05.6974368Z ##[endgroup]
+Unit Tests	Unit tests	2026-09-10T07:38:06.3366720Z ============================= test session starts ==============================
+Unit Tests	Unit tests	2026-09-10T07:38:06.3368245Z platform linux -- Python 3.12.14, pytest-8.3.4, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.12.14/x64/bin/python
+Unit Tests	Unit tests	2026-09-10T07:38:06.3369658Z cachedir: .pytest_cache
+Unit Tests	Unit tests	2026-09-10T07:38:06.3370422Z rootdir: /home/runner/work/student-ml-api/student-ml-api
+Unit Tests	Unit tests	2026-09-10T07:38:06.3371312Z configfile: pytest.ini
+Unit Tests	Unit tests	2026-09-10T07:38:06.3371870Z testpaths: tests
+Unit Tests	Unit tests	2026-09-10T07:38:06.3372403Z plugins: anyio-4.15.1
+Unit Tests	Unit tests	2026-09-10T07:38:06.6869302Z collecting ... collected 13 items
+Unit Tests	Unit tests	2026-09-10T07:38:06.6869923Z 
+Unit Tests	Unit tests	2026-09-10T07:38:06.7191008Z tests/test_app.py::test_health_returns_status_and_version FAILED         [  7%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7227299Z tests/test_app.py::test_health_version_matches_version_file PASSED       [ 15%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7264703Z tests/test_app.py::test_predict_success[10-20] PASSED                    [ 23%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7295153Z tests/test_app.py::test_predict_success[0-0] PASSED                      [ 30%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7324411Z tests/test_app.py::test_predict_success[-3--6] PASSED                    [ 38%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7352812Z tests/test_app.py::test_predict_success[2.5-5.0] PASSED                  [ 46%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7376577Z tests/test_app.py::test_predict_missing_input_is_rejected PASSED         [ 53%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7402253Z tests/test_app.py::test_predict_invalid_input_is_rejected[abc] PASSED    [ 61%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7425536Z tests/test_app.py::test_predict_invalid_input_is_rejected[10] PASSED     [ 69%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7448304Z tests/test_app.py::test_predict_invalid_input_is_rejected[None] PASSED   [ 76%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7473023Z tests/test_app.py::test_predict_invalid_input_is_rejected[True] PASSED   [ 84%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7495736Z tests/test_app.py::test_predict_invalid_input_is_rejected[bad_value4] PASSED [ 92%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7537061Z tests/test_app.py::test_predict_requires_json_body PASSED                [100%]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7537657Z 
+Unit Tests	Unit tests	2026-09-10T07:38:06.7537883Z =================================== FAILURES ===================================
+Unit Tests	Unit tests	2026-09-10T07:38:06.7538597Z ____________________ test_health_returns_status_and_version ____________________
+Unit Tests	Unit tests	2026-09-10T07:38:06.7539103Z 
+Unit Tests	Unit tests	2026-09-10T07:38:06.7539302Z     def test_health_returns_status_and_version():
+Unit Tests	Unit tests	2026-09-10T07:38:06.7539782Z         response = client.get("/health")
+Unit Tests	Unit tests	2026-09-10T07:38:06.7540186Z     
+Unit Tests	Unit tests	2026-09-10T07:38:06.7540491Z         assert response.status_code == 200
+Unit Tests	Unit tests	2026-09-10T07:38:06.7540947Z         data = response.json()
+Unit Tests	Unit tests	2026-09-10T07:38:06.7541330Z >       assert data["status"] == "wrong"
+Unit Tests	Unit tests	2026-09-10T07:38:06.7541795Z E       AssertionError: assert 'healthy' == 'wrong'
+Unit Tests	Unit tests	2026-09-10T07:38:06.7542223Z E         
+Unit Tests	Unit tests	2026-09-10T07:38:06.7542502Z E         - wrong
+Unit Tests	Unit tests	2026-09-10T07:38:06.7542791Z E         + healthy
+Unit Tests	Unit tests	2026-09-10T07:38:06.7542976Z 
+Unit Tests	Unit tests	2026-09-10T07:38:06.7543138Z tests/test_app.py:14: AssertionError
+Unit Tests	Unit tests	2026-09-10T07:38:06.7543641Z =============================== warnings summary ===============================
+Unit Tests	Unit tests	2026-09-10T07:38:06.7544725Z ../../../../../opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/starlette/testclient.py:40
+Unit Tests	Unit tests	2026-09-10T07:38:06.7546420Z   /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/starlette/testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+Unit Tests	Unit tests	2026-09-10T07:38:06.7548451Z     _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+Unit Tests	Unit tests	2026-09-10T07:38:06.7549021Z 
+Unit Tests	Unit tests	2026-09-10T07:38:06.7549348Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+Unit Tests	Unit tests	2026-09-10T07:38:06.7550023Z =========================== short test summary info ============================
+Unit Tests	Unit tests	2026-09-10T07:38:06.7550904Z FAILED tests/test_app.py::test_health_returns_status_and_version - AssertionError: assert 'healthy' == 'wrong'
+Unit Tests	Unit tests	2026-09-10T07:38:06.7551660Z   
+Unit Tests	Unit tests	2026-09-10T07:38:06.7551907Z   - wrong
+Unit Tests	Unit tests	2026-09-10T07:38:06.7552171Z   + healthy
+Unit Tests	Unit tests	2026-09-10T07:38:06.7552567Z =================== 1 failed, 12 passed, 1 warning in 0.42s ====================
+Unit Tests	Unit tests	2026-09-10T07:38:06.8173611Z ##[error]Process completed with exit code 1.

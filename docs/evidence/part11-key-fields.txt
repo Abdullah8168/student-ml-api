@@ -1,0 +1,8 @@
+﻿Container ID: ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b
+Image ID:     sha256:d72a2c08dc12de9ca16b166d23c46e8c4c532b5a5361e8fa122132bc7c0da3b5
+Exposed port: 5000/tcp 
+Port binding: {"5000/tcp":[{"HostIp":"0.0.0.0","HostPort":"5000"}]}
+Command:      ["uvicorn","app:app","--host","0.0.0.0","--port","5000"]
+WorkingDir:   /app
+User:         appuser
+Health:       healthy

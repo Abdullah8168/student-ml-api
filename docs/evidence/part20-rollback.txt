@@ -1,0 +1,24 @@
+===== Deploy current production: ghcr.io/abdullah8168/student-ml-api:1.1.0
+(local copy of 1.0.0 removed - rollback must come from the registry)
+> docker pull ghcr.io/abdullah8168/student-ml-api:1.1.0
+ghcr.io/abdullah8168/student-ml-api:1.1.0
+> docker run -d --name student-ml-api -p 5000:5000 ghcr.io/abdullah8168/student-ml-api:1.1.0
+565445cf3c4b43651bd61732f75723ad2731923b56312b752a9de31f0b5f35f0
+> curl http://localhost:5000/health
+{"status":"healthy","application":"student-ml-api","application_version":"1.1.0","model_version":"model-1"}
+
+===== Incident: assume 1.1.0 has a production issue -> ROLLBACK to 1.0.0 (no rebuild, no source change)
+> docker stop student-ml-api && docker rm student-ml-api
+> docker pull ghcr.io/abdullah8168/student-ml-api:1.0.0
+ghcr.io/abdullah8168/student-ml-api:1.0.0
+> docker run -d --name student-ml-api -p 5000:5000 ghcr.io/abdullah8168/student-ml-api:1.0.0
+9154186a6f7531d387ecc9b558b444f9065700442bbab3bde19f44a1504ad2a6
+> curl http://localhost:5000/health
+{"status":"healthy","application":"student-ml-api","version":"1.0.0"}
+Rollback wall-clock time (incl. 3s wait): 12s
+> docker ps
+9154186a6f75  ghcr.io/abdullah8168/student-ml-api:1.0.0  Up 3 seconds (health: starting)  0.0.0.0:5000->5000/tcp
+> running image digest
+ghcr.io/abdullah8168/student-ml-api@sha256:9737f81291ff8ffe11808c811e169540dc460cff7c3e5997eff19a10e068ec10
+> running image labels (version / revision)
+1.0.0 / a7fc195fd385e2ca143d4e87696a56e30cadc122

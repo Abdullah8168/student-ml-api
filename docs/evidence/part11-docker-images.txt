@@ -1,0 +1,4 @@
+﻿### docker images
+REPOSITORY       TAG       IMAGE ID       CREATED          SIZE
+student-ml-api   1.0.0     d72a2c08dc12   26 seconds ago   139MB
+
