@@ -1,0 +1,155 @@
+# Release: runs only when a semantic-version tag (vX.Y.Z) is pushed.
+# Responsibilities: test, build, version, publish to GitHub Container Registry.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Python setup
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+
+      - name: Dependency installation
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests
+        run: pytest -v
+
+  publish:
+    name: Build and Publish Image
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # create the GitHub Release
+      packages: write   # push to ghcr.io
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Derive version from tag
+        id: version
+        run: |
+          # v1.0.0 -> 1.0.0 (never hard-coded)
+          VERSION="${GITHUB_REF_NAME#v}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Tag '$GITHUB_REF_NAME' is not a semantic version (vMAJOR.MINOR.PATCH)"
+            exit 1
+          fi
+          FILE_VERSION="$(tr -d '[:space:]' < VERSION)"
+          if [ "$VERSION" != "$FILE_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match VERSION file ($FILE_VERSION)"
+            exit 1
+          fi
+          {
+            echo "version=$VERSION"
+            echo "short_sha=${GITHUB_SHA::7}"
+            echo "image=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/student-ml-api"
+            echo "build_date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Authenticate to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Apply version tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.version.outputs.image }}
+          flavor: latest=false
+          tags: |
+            type=semver,pattern={{version}}
+            type=raw,value=latest
+            type=sha,format=short,prefix=
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            APP_VERSION=${{ steps.version.outputs.version }}
+            VCS_REF=${{ github.sha }}
+            BUILD_DATE=${{ steps.version.outputs.build_date }}
+            SOURCE_URL=${{ github.server_url }}/${{ github.repository }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Verify published image
+        env:
+          IMAGE: ${{ steps.version.outputs.image }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          docker pull "$IMAGE:$VERSION"
+          docker inspect "$IMAGE:$VERSION" --format '{{ json .Config.Labels }}'
+          docker run -d --name verify -p 5000:5000 "$IMAGE:$VERSION"
+          for i in $(seq 1 20); do curl -fsS http://localhost:5000/health && break; sleep 1; done
+          echo
+          curl -fsS http://localhost:5000/health | grep -q "$VERSION"
+          docker rm -f verify
+
+      - name: Release summary
+        env:
+          IMAGE: ${{ steps.version.outputs.image }}
+          VERSION: ${{ steps.version.outputs.version }}
+          SHORT_SHA: ${{ steps.version.outputs.short_sha }}
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          {
+            echo "## Release $GITHUB_REF_NAME"
+            echo
+            echo "| Item | Value |"
+            echo "|---|---|"
+            echo "| Git tag | \`$GITHUB_REF_NAME\` |"
+            echo "| Commit | \`$GITHUB_SHA\` |"
+            echo "| Image | \`$IMAGE:$VERSION\` |"
+            echo "| Also tagged | \`latest\`, \`$SHORT_SHA\` |"
+            echo "| Digest | \`$DIGEST\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE: ${{ steps.version.outputs.image }}
+          VERSION: ${{ steps.version.outputs.version }}
+          SHORT_SHA: ${{ steps.version.outputs.short_sha }}
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes --notes "$(cat <<EOF
+          ### Container image
+
+          \`\`\`
+          docker pull $IMAGE:$VERSION
+          \`\`\`
+
+          | Tag | Digest |
+          |---|---|
+          | \`$VERSION\`, \`latest\`, \`$SHORT_SHA\` | \`$DIGEST\` |
+
+          Built from commit \`$GITHUB_SHA\`.
+          EOF
+          )"
