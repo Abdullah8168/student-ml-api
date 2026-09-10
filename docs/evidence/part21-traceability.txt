@@ -1,0 +1,20 @@
+### Part 21 traceability (v1.1.0)
+PR:            #2 feat: model metadata in /health (release 1.1.0) [feature/model-metadata] https://github.com/Abdullah8168/student-ml-api/pull/2
+CI run (PR):   success https://github.com/Abdullah8168/student-ml-api/actions/runs/34451945446
+Merge commit:  1cfb504d66b6e1fad5face58a20f313bcc313137
+Tag v1.1.0 ->  1cfb504d66b6e1fad5face58a20f313bcc313137
+Release run:   v1.1.0 success https://github.com/Abdullah8168/student-ml-api/actions/runs/34452635821
+Image tags:    ghcr.io/abdullah8168/student-ml-api:1.1.0, :latest, :1cfb504
+Image digest:  sha256:703c620d09e42cdbfafebe0f57343f6af9444225ec8fc1a896d7c30df08c9ff9
+Label check:   1.1.0 revision=1cfb504d66b6e1fad5face58a20f313bcc313137 created=2026-09-10T07:58:37Z
+
+### Same chain for v1.0.0
+PR #1 -> merge a7fc195fd385e2ca143d4e87696a56e30cadc122 -> tag v1.0.0 -> a7fc195fd385e2ca143d4e87696a56e30cadc122
+
+### All workflow runs
+34452635821  Release  push  v1.1.0  success
+34451945446  CI  pull_request  feature/model-metadata  success
+34451569007  Release  push  v1.0.0  success
+34451013287  CI  pull_request  feature/prediction-api  success
+34450923188  CI  pull_request  feature/prediction-api  failure
+34450848641  CI  pull_request  feature/prediction-api  success

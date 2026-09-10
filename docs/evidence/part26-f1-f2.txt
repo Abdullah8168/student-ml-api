@@ -1,0 +1,28 @@
+===== F1: Application bound to 127.0.0.1
+> docker run -d --name f1-localhost -p 5002:5000 student-ml-api:1.1.0 uvicorn app:app --host 127.0.0.1 --port 5000
+b2f1de26f088b6963096f1ecac2a3568d8bc0caf7c3c1d419a20aaeae51e6ca4
+> docker ps (container is Up, port is mapped)
+Up 3 seconds (health: starting)  0.0.0.0:5002->5000/tcp
+> curl http://localhost:5002/health (from host)
+curl: (52) Empty reply from server
+exit code: 52
+> docker logs f1-localhost
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+> docker exec f1-localhost python -c ...  (request from INSIDE the container)
+{"status":"healthy","application":"student-ml-api","application_version":"1.1.0","model_version":"model-1"}
+
+===== F2: Wrong container port
+> docker run -d --name f2-port -p 5003:8000 student-ml-api:1.1.0
+1055901645cf9c9d2f167fd505b03b81c077267ea61205c1001a3bf7ccc6d993
+> docker ps
+Up 3 seconds (health: starting)  5000/tcp, 0.0.0.0:5003->8000/tcp
+> curl http://localhost:5003/health
+curl: (52) Empty reply from server
+exit code: 52
+> docker inspect ExposedPorts
+{"5000/tcp":{},"8000/tcp":{}}
+> docker logs f2-port | grep running
+INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)

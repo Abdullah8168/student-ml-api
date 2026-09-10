@@ -1,0 +1,264 @@
+﻿[
+    {
+        "Id": "ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b",
+        "Created": "2026-09-10T07:30:26.596625014Z",
+        "Path": "uvicorn",
+        "Args": [
+            "app:app",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "5000"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1678,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-09-10T07:30:26.668345943Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-09-10T07:30:31.771973807Z",
+                        "End": "2026-09-10T07:30:32.070550737Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:d72a2c08dc12de9ca16b166d23c46e8c4c532b5a5361e8fa122132bc7c0da3b5",
+        "ResolvConfPath": "/var/lib/docker/containers/ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b/hostname",
+        "HostsPath": "/var/lib/docker/containers/ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b/hosts",
+        "LogPath": "/var/lib/docker/containers/ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b/ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b-json.log",
+        "Name": "/student-ml-api",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "bridge",
+            "PortBindings": {
+                "5000/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "5000"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "ce8a0f6058cd8d58428ebf602666f429888e176328badeab79e13a3f4fdfe38b",
+                "LowerDir": "/var/lib/docker/overlay2/9e48a2ee997e26afed0b36f4b10e91bd967798248e911451c671d8030c59e995-init/diff:/var/lib/docker/overlay2/imqg9rbinnyvuc2x4yr2w2n7a/diff:/var/lib/docker/overlay2/ww3am0wlae8nj1xql0yy61u4o/diff:/var/lib/docker/overlay2/vetrilv9w9ns2khd3jhtb0uay/diff:/var/lib/docker/overlay2/j9ispuocq898sn6iuhkyx36sz/diff:/var/lib/docker/overlay2/k40mcwsh3ept4gyzamuh71rlv/diff:/var/lib/docker/overlay2/516c3794a865d90b8b077964ac465a4bdbae23bef58036ffd6fb9f218a210beb/diff:/var/lib/docker/overlay2/92836a47547683f6dac401cdb60c3da6d7e55f0b6e27e2f5493636748e255579/diff:/var/lib/docker/overlay2/bf922eaa90cfb14c5466b21da5d78953b8315d41129c4fd40deab400e89c1407/diff:/var/lib/docker/overlay2/5ac28c88f22826bbbc02b9fa278be82450c1e2bfc604e8be30b7f4034a575279/diff",
+                "MergedDir": "/var/lib/docker/overlay2/9e48a2ee997e26afed0b36f4b10e91bd967798248e911451c671d8030c59e995/merged",
+                "UpperDir": "/var/lib/docker/overlay2/9e48a2ee997e26afed0b36f4b10e91bd967798248e911451c671d8030c59e995/diff",
+                "WorkDir": "/var/lib/docker/overlay2/9e48a2ee997e26afed0b36f4b10e91bd967798248e911451c671d8030c59e995/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "ce8a0f6058cd",
+            "Domainname": "",
+            "User": "appuser",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5000/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.8",
+                "PYTHON_SHA256=c909157bb25ec114e5869124cc2a9c4a4d4c1e957ca4ff553f1edc692101154e",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1"
+            ],
+            "Cmd": [
+                "uvicorn",
+                "app:app",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "5000"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health')\" || exit 1"
+                ],
+                "Interval": 30000000000,
+                "Timeout": 3000000000,
+                "StartPeriod": 5000000000,
+                "Retries": 3
+            },
+            "Image": "student-ml-api:1.0.0",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.created": "unknown",
+                "org.opencontainers.image.description": "ML inference API (FastAPI)",
+                "org.opencontainers.image.revision": "unknown",
+                "org.opencontainers.image.source": "https://github.com/Abdullah8168/student-ml-api",
+                "org.opencontainers.image.title": "student-ml-api",
+                "org.opencontainers.image.url": "https://github.com/Abdullah8168/student-ml-api",
+                "org.opencontainers.image.version": "dev"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "0d6e737c274e6938f2a3c295e6c3fd06623e16075358e44bfca6f1a32a58b179",
+            "SandboxKey": "/var/run/docker/netns/0d6e737c274e",
+            "Ports": {
+                "5000/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "5000"
+                    }
+                ]
+            },
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "59704de38f66bee3d391d5faba8ef999d757f17c42b587160f12c171bf4d4d1b",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "12:c4:2c:a0:42:ae",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "12:c4:2c:a0:42:ae",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "b9b7bfa1561b91d408d3315f88905e5aeb33ced61e7f5ec7686026dd3c052654",
+                    "EndpointID": "59704de38f66bee3d391d5faba8ef999d757f17c42b587160f12c171bf4d4d1b",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        }
+    }
+]

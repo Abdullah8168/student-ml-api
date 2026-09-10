@@ -1,0 +1,47 @@
+﻿### docker rm -f student-ml-api
+student-ml-api
+### docker rmi student-ml-api:1.0.0 student-ml-api:cachetest
+Untagged: student-ml-api:1.0.0
+Deleted: sha256:d72a2c08dc12de9ca16b166d23c46e8c4c532b5a5361e8fa122132bc7c0da3b5
+Untagged: student-ml-api:cachetest
+Deleted: sha256:f0818981d7eb7b01dcd0ac28219c8dbf1ce3a32526edea197a2d4961adb5b1e5
+### docker images (after delete)
+REPOSITORY                                                                TAG               IMAGE ID       CREATED         SIZE
+### docker pull ghcr.io/abdullah8168/student-ml-api:1.0.0
+1.0.0: Pulling from abdullah8168/student-ml-api
+c29f5b76f736: Already exists
+098e41244522: Already exists
+4e22988d3ed3: Already exists
+260bd0d7f5c0: Already exists
+b19d85da8b29: Pulling fs layer
+d9b1a389453c: Pulling fs layer
+fbda06737165: Pulling fs layer
+777e35ffb52a: Pulling fs layer
+c9064e14e800: Pulling fs layer
+777e35ffb52a: Waiting
+c9064e14e800: Waiting
+b19d85da8b29: Verifying Checksum
+d9b1a389453c: Verifying Checksum
+d9b1a389453c: Download complete
+b19d85da8b29: Pull complete
+fbda06737165: Download complete
+d9b1a389453c: Pull complete
+fbda06737165: Pull complete
+c9064e14e800: Verifying Checksum
+c9064e14e800: Download complete
+777e35ffb52a: Verifying Checksum
+777e35ffb52a: Download complete
+777e35ffb52a: Pull complete
+c9064e14e800: Pull complete
+Digest: sha256:9737f81291ff8ffe11808c811e169540dc460cff7c3e5997eff19a10e068ec10
+Status: Downloaded newer image for ghcr.io/abdullah8168/student-ml-api:1.0.0
+ghcr.io/abdullah8168/student-ml-api:1.0.0
+### docker run
+3a9ff6a6f5285232fe35ddd48df345d4f8a5bb560df124e8f78e1318565d48be
+### curl /health
+{"status":"healthy","application":"student-ml-api","version":"1.0.0"}
+
+### docker inspect labels (Part 23)
+{"org.opencontainers.image.created":"2026-09-10T07:46:22Z","org.opencontainers.image.description":"ML inference API (FastAPI)","org.opencontainers.image.revision":"a7fc195fd385e2ca143d4e87696a56e30cadc122","org.opencontainers.image.source":"https://github.com/Abdullah8168/student-ml-api","org.opencontainers.image.title":"student-ml-api","org.opencontainers.image.url":"https://github.com/Abdullah8168/student-ml-api","org.opencontainers.image.version":"1.0.0"}
+### RepoDigests
+["ghcr.io/abdullah8168/student-ml-api@sha256:9737f81291ff8ffe11808c811e169540dc460cff7c3e5997eff19a10e068ec10"]

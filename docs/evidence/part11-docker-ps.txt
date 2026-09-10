@@ -1,0 +1,4 @@
+﻿### docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS                    PORTS                    NAMES
+ce8a0f6058cd   student-ml-api:1.0.0   "uvicorn app:app --h…"   17 seconds ago   Up 16 seconds (healthy)   0.0.0.0:5000->5000/tcp   student-ml-api
+
