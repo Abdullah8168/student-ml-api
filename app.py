@@ -7,6 +7,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel, StrictFloat, StrictInt
 
 APP_NAME = "student-ml-api"
+# Versioned independently of the application: the same app release could serve a retrained model.
+MODEL_VERSION = "model-1"
 VERSION_FILE = Path(__file__).resolve().parent / "VERSION"
 
 
@@ -40,7 +42,8 @@ def health() -> dict:
     return {
         "status": "healthy",
         "application": APP_NAME,
-        "version": APP_VERSION,
+        "application_version": APP_VERSION,
+        "model_version": MODEL_VERSION,
     }
 
 
