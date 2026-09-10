@@ -70,7 +70,7 @@ jobs:
           echo
           response=$(curl -fsS http://localhost:5000/health)
           expected=$(tr -d '[:space:]' < VERSION)
-          echo "$response" | grep -q "\"version\":\"$expected\"" \
+          echo "$response" | grep -q "\"application_version\":\"$expected\"" \
             || { echo "::error::/health did not report version $expected"; docker logs smoke; exit 1; }
           curl -fsS -X POST http://localhost:5000/predict \
             -H 'Content-Type: application/json' -d '{"value": 10}' | grep -q '"prediction":20'
