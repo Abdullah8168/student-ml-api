@@ -11,7 +11,7 @@ def test_health_returns_status_and_version():
 
     assert response.status_code == 200
     data = response.json()
-    assert data["status"] == "wrong"
+    assert data["status"] == "healthy"
     assert data["application"] == "student-ml-api"
     assert data["version"] == APP_VERSION
 
